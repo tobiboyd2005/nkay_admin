@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Layout/navbar";
 import { Footer } from "@/components/Layout/footer";
 import "../../styles/globals.css"
-import AuthProvider from "@/components/AuthProvider";
-import {Session} from "next-auth";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -11,11 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                       session
+                                       children
                                    }: {
     children: React.ReactNode;
-    session?: Session | null; // The session can be null or undefined
 }) {
     return (
         <html lang="en">
@@ -28,7 +24,6 @@ export default function RootLayout({
         </head>
 
         <body className="antialiased font-satoshi flex flex-col">
-        <AuthProvider session={session}>
         <div>
         {/* Navbar */}
 
@@ -42,7 +37,6 @@ export default function RootLayout({
             <Footer />
         </footer>
         </div>
-        </AuthProvider>
         </body>
         </html>
     );

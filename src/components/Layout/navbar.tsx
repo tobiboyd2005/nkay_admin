@@ -27,16 +27,26 @@ export default function Navbar() {
                 <Image src={nkay} alt="nkay image" width={160} height={160} />
             </div>
             <div className="justify-self-center">
-                <Link href="/docs" className={cn(navigationMenuTriggerStyle(), "font-bold")}>
-                    Home
-                </Link>
-                <Link className={cn(navigationMenuTriggerStyle(), "font-bold")} href="/docs">
-                    Collections
-                </Link>
-                <Link className={cn(navigationMenuTriggerStyle(), "font-bold")} href="/docs">
-                    My Orders
-                </Link>
-            </div>
+  <Link
+    href="/docs"
+    className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
+  >
+    Home
+  </Link>
+  <Link
+    href="/docs"
+    className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
+  >
+    Collections
+  </Link>
+  <Link
+    href="/docs"
+    className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
+  >
+    My Orders
+  </Link>
+</div>
+
             <div className="justify-self-end flex items-center">
                 <Button><ShoppingBag/></Button>
                 {/* {session && session.user ? (
