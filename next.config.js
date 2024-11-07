@@ -1,5 +1,7 @@
 const nextConfig = {
-  /* config options here */
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
