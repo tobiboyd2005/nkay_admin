@@ -32,6 +32,7 @@ export function ProductCard({
         <Image src={imagePath} fill alt={name} className="rounded-lg" />
       </div>
       <CardHeader className="mt-2 lg:mt-4">
+
         <CardTitle className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl">{name}</CardTitle>
         <CardDescription className="text-sm sm:text-base lg:text-lg 2xl:text-xl">
           {formatCurrency(priceInNaira)}
@@ -42,7 +43,9 @@ export function ProductCard({
           {description}
         </p>
       </CardContent>
+
       <CardFooter className="mt-2 lg:mt-4">
+
         <Button asChild size="lg" className="w-full text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4">
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
         </Button>
@@ -56,6 +59,7 @@ export function ProductCardSkeleton() {
     <Card className="overflow-hidden flex flex-col animate-pulse p-4 sm:p-6 lg:p-8 2xl:p-10">
       <div className="w-full aspect-video bg-gray-300 rounded-lg" />
       <CardHeader className="mt-2 lg:mt-4">
+
         <CardTitle>
           <div className="w-3/4 h-6 sm:h-8 lg:h-10 2xl:h-12 rounded-full bg-gray-300" />
         </CardTitle>
