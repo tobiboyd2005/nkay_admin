@@ -10,7 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { formatCurrency } from "@/lib/formatters"
+import { formatCurrency } from "@/lib/formatter"
+
 import {
   Elements,
   LinkAuthenticationElement,
@@ -27,7 +28,7 @@ type CheckoutFormProps = {
     id: string
     imagePath: string
     name: string
-    priceInCents: number
+    priceInNaira: number
     description: string
   }
   clientSecret: string
@@ -51,7 +52,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
         </div>
         <div>
           <div className="text-lg">
-            {formatCurrency(product.priceInCents / 100)}
+            {formatCurrency(product.priceInNaira)}
           </div>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <div className="line-clamp-3 text-muted-foreground">
@@ -60,17 +61,17 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
         </div>
       </div>
       <Elements options={{ clientSecret }} stripe={stripePromise}>
-        <Form priceInCents={product.priceInCents} productId={product.id} />
+        <Form priceInNaira={product.priceInNaira} productId={product.id} />
       </Elements>
     </div>
   )
 }
 
 function Form({
-  priceInCents,
+  priceInNaira,
   productId,
 }: {
-  priceInCents: number
+  priceInNaira: number
   productId: string
 }) {
   const stripe = useStripe()
@@ -140,7 +141,7 @@ function Form({
           >
             {isLoading
               ? "Purchasing..."
-              : `Purchase - ${formatCurrency(priceInCents / 100)}`}
+              : `Purchase - ${formatCurrency(priceInNaira)}`}
           </Button>
         </CardFooter>
       </Card>
