@@ -10,9 +10,8 @@ interface FabCardProps {
 
 export function FabCard({ name, imageSrc }: FabCardProps) {
     return (
-        <div className="w-[250px]">
-            <div className="relative w-full h-[100px]">
-
+        <div className="w-[350px] 2xl:w-[500px]">
+            <div className="relative w-full h-[200px] 2xl:h-[350px]">
                 <Image
                     src={imageSrc}
                     alt={name}

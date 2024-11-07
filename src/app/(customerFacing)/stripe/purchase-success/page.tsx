@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import db from "@/db/db"
-import { formatCurrency } from "@/lib/formatters"
+import { formatCurrency } from "@/lib/formatter"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -41,7 +41,7 @@ export default async function SuccessPage({
         </div>
         <div>
           <div className="text-lg">
-            {formatCurrency(product.priceInCents / 100)}
+            {formatCurrency(product.priceInNaira)}
           </div>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <div className="line-clamp-3 text-muted-foreground">

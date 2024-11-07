@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="h-auto">
       <Banner />
-      <section className="grid grid-rows-2 w-full justify-center gap-4 my-24">
+      <section className="grid grid-rows-2 w-full justify-center gap-8 my-24">
         <ProductGridSection
           title="Most Popular"
           productsFetcher={getMostPopularProducts}
@@ -58,17 +58,20 @@ function ProductGridSection({
   title,
 }: ProductGridSectionProps) {
   return (
-    <div className="space-y-4">
-      <div className="flex gap-4">
-        <h2 className="text-3xl font-bold">{title}</h2>
+    <div className="space-y-6">
+      {/* Title and View All Button */}
+      <div className="flex items-center gap-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">{title}</h2>
         <Button variant="outline" asChild>
-          <Link href="/products" className="space-x-2">
-            <span>View All</span>
-            <ArrowRight className="size-4"/>
+          <Link href="/products" className="flex items-center space-x-2">
+            <span className="text-lg lg:text-xl">View All</span>
+            <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6" />
           </Link>
         </Button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      {/* Grid Container */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
         <Suspense
           fallback={
             <>
@@ -84,6 +87,7 @@ function ProductGridSection({
     </div>
   );
 }
+
 
 async function ProductSuspense({
   productsFetcher,

@@ -21,7 +21,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
   );
 
   return (
-    <form action={action} className="grid grid-cols-2 gap-4">
+    <form action={action} className="grid grid-cols-2 w-full gap-4">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input

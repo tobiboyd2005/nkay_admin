@@ -14,7 +14,7 @@ export default function Category() {
   return (
     <div className="w-full h-auto my-24 flex flex-col font-satoshi items-center">
       <h1 className="font-black text-[50px] text-center uppercase">
-        Categories
+        With a<br/> wide range<br/> of Categories
       </h1>
       <div className="grid grid-cols-3 gap-8 mt-4">
         <FabCard name="Lace" imageSrc={lace} />
