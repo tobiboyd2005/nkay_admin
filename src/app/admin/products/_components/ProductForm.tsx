@@ -15,41 +15,22 @@ import { FormEvent } from "react";
 
 
 export function ProductForm({ product }: { product?: Product | null }) {
-const [error, action] = useActionState(
-  product == null ? addProduct : updateProduct.bind(null, product.id),
-  {}
-);
-
-const [priceInNaira, setPriceInNaira] = useState<number | undefined>(
-  product?.priceInNaira
-);
+  const [error, action] = useActionState(
+    product == null ? addProduct : updateProduct.bind(null, product.id),
+    {}
+  );
+  const [priceInNaira, setPriceInNaira] = useState<number | undefined>(
+    product?.priceInNaira
+  );
 
 const handleSave = async (event: FormEvent) => {
   event.preventDefault(); // Prevent default form submission
 
-  // Create the data object
-  const data = {
-    name: product?.name, // You can access `name` or any other fields from the product
-    priceInNaira,
-    filePath: product?.filePath,
-    imagePath: product?.imagePath,
-  };
-
   try {
-    // Perform the action (either add or update the product)
-    await action(data); // Use action (addProduct or updateProduct) to perform the actual API call
-
-    // If successful, show a success toast
-    toast.success(
-      product == null
-        ? "Product Created Successfully"
-        : "Product Updated Successfully"
-    );
-
-    // You can also handle additional logic if necessary (e.g., resetting fields, redirecting, etc.)
+    toast.success("Product Created Successfully");
   } catch (error) {
     // If an error occurs, show an error toast
-    toast.error("An error occurred while creating/updating the product");
+    toast.error("An error occurred while creating the product");
     console.error("Error:", error);
   }
 };
@@ -57,7 +38,7 @@ const handleSave = async (event: FormEvent) => {
 
 
   return (
-    <form action={action} className="grid grid-cols-2 w-full gap-4">
+    <form action={action} onSubmit={handleSave} className="grid grid-cols-2 w-full gap-4">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
