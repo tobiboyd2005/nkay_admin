@@ -5,10 +5,8 @@ import Image from "next/image";
 import nkay from "../../../public/nkay.png";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { useSession } from "next-auth/react";
-import SignUpModal from "@/components/Layout/modal";
-import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 
 // Function to generate a random color
@@ -22,7 +20,7 @@ const getRandomColor = () => {
 };
 
 export default function Navbar() {
-    const { data: session } = useSession(); 
+
     return (
         <div className="h-24 w-full grid grid-rows-1 sticky grid-cols-3 items-center px-8">
             <div className="justify-self-start">
@@ -41,7 +39,7 @@ export default function Navbar() {
             </div>
             <div className="justify-self-end flex items-center">
                 <Button><ShoppingBag/></Button>
-                {session && session.user ? (
+                {/* {session && session.user ? (
                     <>
                         <div
                             className="flex items-center justify-center rounded-full"
@@ -61,7 +59,7 @@ export default function Navbar() {
                     </>
                 ) : (
                     <SignUpModal/>
-                )}
+                )} */}
             </div>
         </div>
     );

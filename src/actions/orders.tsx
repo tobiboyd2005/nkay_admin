@@ -24,7 +24,7 @@ export async function emailOrderHistory(
       email: true,
       orders: {
         select: {
-          pricePaidInCents: true,
+          pricePaidInNaira: true,
           id: true,
           createdAt: true,
           product: {
