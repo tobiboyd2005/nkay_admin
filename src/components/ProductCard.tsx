@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -10,6 +11,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/formatter";
+import {useState} from "react";
 
 type ProductCardProps = {
   id: string;
@@ -19,39 +21,65 @@ type ProductCardProps = {
   imagePath: string;
 };
 
+
+
 export function ProductCard({
-  id,
-  name,
-  priceInNaira,
-  description,
-  imagePath,
-}: ProductCardProps) {
-  return (
-    <Card className="flex overflow-hidden flex-col p-4">
-      <div className="relative 2xl:w-[500px] 2xl:h-[500px] aspect-video">
-        <Image src={imagePath} fill alt={name} className="rounded-lg" />
-      </div>
-      <CardHeader className="mt-2 lg:mt-4">
+                                id,
+                                name,
+                                priceInNaira,
+                                description,
+                                imagePath,
+                            }: ProductCardProps) {
+    // State for the counter
+    const [yards, setYards] = useState(1);
 
-        <CardTitle className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl">{name}</CardTitle>
-        <CardDescription className="text-sm sm:text-base lg:text-lg 2xl:text-xl">
-          {formatCurrency(priceInNaira)}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex-grow mt-2 lg:mt-4">
-        <p className="line-clamp-4 text-sm sm:text-base lg:text-lg 2xl:text-xl">
-          {description}
-        </p>
-      </CardContent>
+    // Increment and decrement functions
+    const incrementYards = () => setYards((prev) => prev + 1);
+    const decrementYards = () => setYards((prev) => (prev > 1 ? prev - 1 : 1));
 
-      <CardFooter className="mt-2 lg:mt-4">
+    return (
+        <Card className="flex overflow-hidden flex-col p-4">
+            <div className="relative 2xl:w-[500px] 2xl:h-[500px] aspect-video">
+                <Image src={imagePath} fill alt={name} className="rounded-lg" />
+            </div>
+            <CardHeader className="mt-2 lg:mt-4">
+                <CardTitle className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl">{name}</CardTitle>
+                <CardDescription className="text-sm sm:text-base lg:text-lg 2xl:text-xl">
+                    {formatCurrency(priceInNaira)}
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-grow mt-2 lg:mt-4">
+                <p className="line-clamp-4 text-sm sm:text-base lg:text-lg 2xl:text-xl">{description}</p>
+            </CardContent>
 
-        <Button asChild size="lg" className="w-full text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4">
-          <Link href={`/products/${id}/purchase`}>Purchase</Link>
-        </Button>
-      </CardFooter>
-    </Card>
-  );
+            {/* Counter Section */}
+            <div className="mt-4 flex items-center justify-between">
+                <Button
+                    className="px-4 py-2 bg-gray-300 rounded-lg text-lg"
+                    onClick={decrementYards}
+                >
+                    -
+                </Button>
+                <span className="text-lg font-semibold">{yards} Yard{yards > 1 ? "s" : ""}</span>
+                <Button
+                    className="px-4 py-2 bg-gray-300 rounded-lg text-lg"
+                    onClick={incrementYards}
+                >
+                    +
+                </Button>
+            </div>
+
+            <CardFooter className="mt-4">
+                <Button
+                    asChild
+                    size="lg"
+                    className="w-full text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4"
+                >
+                    Add to cart
+                </Button>
+            </CardFooter>
+        </Card>
+    );
 }
 
 export function ProductCardSkeleton() {

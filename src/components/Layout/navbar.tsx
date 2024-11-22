@@ -7,6 +7,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
+import {useRouter} from "next/navigation";
 
 
 // Function to generate a random color
@@ -20,7 +21,11 @@ const getRandomColor = () => {
 };
 
 export default function Navbar() {
-    // const { data: session } = useSession(); 
+    // const { data: session } = useSession();
+    const router = useRouter();
+    const handleClick = () => {
+        router.push("/purchase");
+    }
     return (
         <div className="h-24 w-full grid grid-rows-1 sticky grid-cols-3 items-center px-8">
             <div className="justify-self-start">
@@ -28,19 +33,19 @@ export default function Navbar() {
             </div>
             <div className="justify-self-center">
   <Link
-    href="/docs"
+    href=""
     className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
   >
     Home
   </Link>
   <Link
-    href="/docs"
+    href="/products"
     className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
   >
     Collections
   </Link>
   <Link
-    href="/docs"
+    href="/orders"
     className={cn(navigationMenuTriggerStyle(), "font-bold text-base 2xl:text-lg")}
   >
     My Orders
@@ -48,7 +53,8 @@ export default function Navbar() {
 </div>
 
             <div className="justify-self-end flex items-center">
-                <Button><ShoppingBag/></Button>
+                <Button onClick={handleClick}><ShoppingBag/></Button>
+
                 {/* {session && session.user ? (
                     <>
                         <div

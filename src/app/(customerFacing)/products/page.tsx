@@ -1,7 +1,9 @@
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard"
 import db from "@/db/db"
 import { cache } from "@/lib/cache"
-import { Suspense } from "react"
+import React, { Suspense } from "react"
+import {AppSidebar} from "@/components/Home/sidebar";
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 
 const getProducts = cache(() => {
   return db.product.findMany({
@@ -12,21 +14,24 @@ const getProducts = cache(() => {
 
 export default function ProductsPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Suspense
-        fallback={
-          <>
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-          </>
-        }
-      >
-        <ProductsSuspense />
-      </Suspense>
+    <div className="">
+      <SidebarProvider>
+        <AppSidebar />
+      </SidebarProvider>
+      {/*<Suspense*/}
+      {/*  fallback={*/}
+      {/*    <>*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*      <ProductCardSkeleton />*/}
+      {/*    </>*/}
+      {/*  }*/}
+      {/*>*/}
+      {/*  <ProductsSuspense />*/}
+      {/*</Suspense>*/}
     </div>
   )
 }

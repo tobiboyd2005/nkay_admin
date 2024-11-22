@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="h-auto">
       <Banner />
-      <section className="grid grid-rows-2 w-full justify-center gap-8 my-24">
+      <div className="grid grid-rows-2 w-full justify-center gap-8 my-24">
         <ProductGridSection
           title="Most Popular"
           productsFetcher={getMostPopularProducts}
@@ -42,7 +42,7 @@ export default function Home() {
           title="Newest"
           productsFetcher={getNewestProducts}
         />
-      </section>
+      </div>
       <Category />
     </div>
   );
