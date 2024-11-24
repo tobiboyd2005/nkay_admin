@@ -39,7 +39,7 @@ export function ProductCard({
 
     return (
         <Card className="flex overflow-hidden flex-col p-4">
-            <div className="relative 2xl:w-[500px] 2xl:h-[500px] aspect-video">
+            <div className="relative aspect-video">
                 <Image src={imagePath} fill alt={name} className="rounded-lg" />
             </div>
             <CardHeader className="mt-2 lg:mt-4">
@@ -51,8 +51,6 @@ export function ProductCard({
             <CardContent className="flex-grow mt-2 lg:mt-4">
                 <p className="line-clamp-4 text-sm sm:text-base lg:text-lg 2xl:text-xl">{description}</p>
             </CardContent>
-
-            {/* Counter Section */}
             <div className="mt-4 flex items-center justify-between">
                 <Button
                     className="px-4 py-2 bg-gray-300 rounded-lg text-lg"
@@ -68,12 +66,10 @@ export function ProductCard({
                     +
                 </Button>
             </div>
-
             <CardFooter className="mt-4">
                 <Button
-                    asChild
                     size="lg"
-                    className="w-full text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4"
+                    className="w-full border border-gray-300 text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4"
                 >
                     Add to cart
                 </Button>

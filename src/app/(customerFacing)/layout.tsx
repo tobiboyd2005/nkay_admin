@@ -10,11 +10,9 @@ export default function RootLayout({
 }) {
   return (
         <div className="bg-background min-h-screen font-satoshi antialiased">
-          <Navbar />
+          <Navbar/>
           <div className="h-auto">{children}</div>
-          <footer>
-            <Footer />
-          </footer>
+            <Footer/>
         </div>
   );
 }

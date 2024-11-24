@@ -138,7 +138,7 @@ function SubmitButton() {
     <Button
       type="submit"
       disabled={pending}
-      className="bg-[#4B4376] rounded text-white hover:opacity-80"
+      className="bg-[#4B4376] rounded text-white hover:bg-[#4B4376]"
     >
       {pending ? "Saving..." : "Save"}
     </Button>

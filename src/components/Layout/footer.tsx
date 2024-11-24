@@ -6,7 +6,6 @@ interface FooterProps {
 }
 
 export function Footer({ className }: FooterProps) {
-  // Destructure className from props
   return (
     <div>
       <div className="flex items-center bg-black h-[400px] w-full">
