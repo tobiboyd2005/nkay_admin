@@ -1,9 +1,12 @@
 "use client";
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
-import db from "@/db/db";
 import { cache } from "@/lib/cache";
 import React, { Suspense } from "react";
-import ProductLayout from "@/app/(customerFacing)/products/layout";
+import { Product } from "@prisma/client";
+ // Import the ProductGridSection
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
@@ -12,21 +15,16 @@ import {
 } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
 import { CheckboxWithLabel } from "@/components/form/formCheckbox";
+import { getProducts, ProductGridSection } from "./components/product";
 
-
-const getProducts = cache(() => {
-  return db.product.findMany({
-    where: { isAvailableForPurchase: true },
-    orderBy: { name: "asc" },
-  });
-}, ["/products", "getProducts"]);
-
+// This will be used to fetch the products
 
 
 export default function ProductsPage() {
   const [values, setValues] = React.useState<number[]>([1000, 5000]);
+
   return (
-    <div className="flex mx-20 my-8">
+    <div className="flex gap-20 mx-20 my-8">
       <div className="w-52">
         <section>
           <h2 className="uppercase py-4 font-bold text-xl">Browse By</h2>
@@ -90,26 +88,26 @@ export default function ProductsPage() {
                   <CheckboxWithLabel id="lace" label="Lace" />
                   <CheckboxWithLabel id="chiffon" label="Chiffon" />
                   <CheckboxWithLabel id="silk" label="Silk" />
-                  <CheckboxWithLabel id="ankara" label="Ankara" />
-                  <CheckboxWithLabel id="ankara" label="Ankara" />
                 </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </section>
       </div>
-      <div></div>
+      <div>
+        <h2 className="uppercase py-4 font-bold text-xl">All Products</h2>
+        <p>
+          Explore our wide range of textures, colors, and patterns to bring your
+          ideas to life. Quality and variety are at the heart of what we do, so
+          you can trust that every piece you choose will meet your expectations.
+        </p>
+        <Suspense fallback={<ProductCardSkeleton />}>
+          <ProductGridSection
+            title="Most Popular"
+            productsFetcher={getProducts}
+          />
+        </Suspense>
+      </div>
     </div>
   );
-}
-
-ProductsPage.getLayout = function getLayout(page: React.ReactNode) {
-  return <ProductLayout>{page}</ProductLayout>;
-};
-
-async function ProductsSuspense() {
-  const products = await getProducts();
-  return products.map((product) => (
-    <ProductCard key={product.id} {...product} />
-  ));
 }
