@@ -38,20 +38,20 @@ export function ProductCard({
     const decrementYards = () => setYards((prev) => (prev > 1 ? prev - 1 : 1));
 
     return (
-        <Card className="flex overflow-hidden flex-col p-4">
+        <Card className="flex overflow-hidden flex-col rounded-2xl">
             <div className="relative aspect-video">
                 <Image src={imagePath} fill alt={name} className="rounded-lg" />
             </div>
-            <CardHeader className="mt-2 lg:mt-4">
+            <CardHeader>
                 <CardTitle className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl">{name}</CardTitle>
                 <CardDescription className="text-sm sm:text-base lg:text-lg 2xl:text-xl">
                     {formatCurrency(priceInNaira)}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow mt-2 lg:mt-4">
+            <CardContent className="flex-grow ">
                 <p className="line-clamp-4 text-sm sm:text-base lg:text-lg 2xl:text-xl">{description}</p>
             </CardContent>
-            <div className="mt-4 flex items-center justify-between">
+            <div className=" flex items-center justify-around">
                 <Button
                     className="px-4 py-2 bg-gray-300 rounded-lg text-lg"
                     onClick={decrementYards}
@@ -66,10 +66,10 @@ export function ProductCard({
                     +
                 </Button>
             </div>
-            <CardFooter className="mt-4">
+            <CardFooter className="">
                 <Button
                     size="lg"
-                    className="w-full border border-gray-300 text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4"
+                    className="w-full border mt-4 border-gray-300 text-base lg:text-lg 2xl:text-xl py-2 lg:py-3 2xl:py-4"
                 >
                     Add to cart
                 </Button>

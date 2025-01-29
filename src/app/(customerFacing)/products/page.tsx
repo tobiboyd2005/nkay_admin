@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
 import { CheckboxWithLabel } from "@/components/form/formCheckbox";
+
 import { getProducts, ProductGridSection } from "./components/product";
 
 // This will be used to fetch the products
@@ -102,10 +103,11 @@ export default function ProductsPage() {
           you can trust that every piece you choose will meet your expectations.
         </p>
         <Suspense fallback={<ProductCardSkeleton />}>
+        <div className="my-4 w-full">
           <ProductGridSection
-            title="Most Popular"
             productsFetcher={getProducts}
           />
+        </div>  
         </Suspense>
       </div>
     </div>

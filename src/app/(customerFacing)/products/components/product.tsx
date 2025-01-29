@@ -24,25 +24,27 @@ export default async function Page() {
 }
 
 type ProductGridSectionProps = {
-  title: string;
+  title?: string;
   productsFetcher: () => Promise<Product[]>;
+  home?: boolean;
 };
 
 export function ProductGridSection({
   productsFetcher,
   title,
+  home,
 }: ProductGridSectionProps) {
   return (
     <div className="space-y-6">
       {/* Title and View All Button */}
       <div className="flex items-center gap-6">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">{title}</h2>
-        <Button variant="outline" asChild>
+        {home && (<Button variant="outline" asChild>
           <Link href="/products" className="flex items-center space-x-2">
             <span className="text-lg lg:text-xl">View All</span>
             <ArrowRight className="w-5 h-5 lg:w-6 lg:h-6" />
           </Link>
-        </Button>
+        </Button>)}
       </div>
 
       {/* Grid Container */}
